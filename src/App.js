@@ -98,6 +98,7 @@ const App = () => {
     }
   };
 
+  //CREATE NEW OBJECT FOR FULL PAGE INFO CARD
   const handleComponentClick = (movie) => {
     const details = {
       backdrop: movie.backdrop_path,
