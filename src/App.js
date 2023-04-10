@@ -6,13 +6,15 @@ import PageButtons from "./PageButtons";
 import InfoCard from "./InfoCard";
 import TMDBLogo from "./TMDBLogo.svg"
 
-//const API_KEY = "6923363bff93519e1994961e935b25b1";
-//const API_URL = "https://api.themoviedb.org/3/movie/550?api_key=6923363bff93519e1994961e935b25b1";
-const API_POPULAR = "https://api.themoviedb.org/3/movie/popular?api_key=6923363bff93519e1994961e935b25b1&language=en-US&page=";
-const API_SEARCH = "https://api.themoviedb.org/3/search/movie?api_key=6923363bff93519e1994961e935b25b1&language=en-US&page="
+
+
+
 
 
 const App = () => {
+
+  //API
+  const API_POPULAR = "https://api.themoviedb.org/3/movie/popular?api_key=6923363bff93519e1994961e935b25b1&language=en-US&page=";
 
   //STATES
   const [movies, setMovies] = useState([]);
@@ -33,7 +35,7 @@ const App = () => {
     console.log(data.results);
   };
 
-  //GET POPULAR MOVIES
+  //SEARCH MOVIES
   const searchMovies = async () => {
 
     const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=6923363bff93519e1994961e935b25b1&language=en-US&query=${searchTerm2}&page=${page}`);
@@ -43,6 +45,7 @@ const App = () => {
     console.log(data.results);
   }
 
+  //SET DARKMODE
   const darkModeFunc = () => {
     setDarkMode(!darkMode)
     console.log(darkMode);
@@ -66,6 +69,8 @@ const App = () => {
 
   }, [page])
 
+
+  //SET PAGE TO 1 ON NEW SEARCH
   useEffect(() => {
 
     setPage(1)
@@ -87,11 +92,13 @@ const App = () => {
     setPage((prevCount) => prevCount + direction)
   }
 
+  //DECIDE WHETHER OR NOT OT SHOW FULL PAGE INFO CARD
   const showHideInfo = () => {
     setShowInfo(!showInfo);
     console.log(showInfo)
   };
 
+  //ADD ENTER PRESS AS ALTERNATIVE TO CLICKING 'SEARCH
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       setSearchTerm2(searchTerm)
